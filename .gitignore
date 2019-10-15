@@ -1,0 +1,8 @@
+.terraform
+.idea
+*.iml
+terraform.tf
+.DS_Store
+plan.out
+terraform.tfstate
+terraform.tfstate.backup
