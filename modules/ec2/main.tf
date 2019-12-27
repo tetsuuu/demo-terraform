@@ -1,5 +1,5 @@
 data "template_file" "userdata-bastion" {
-  template = file("${path.module}/../../userdata-template/bastion.tpl")
+  template = file("${path.module}/userdata-template/bastion.tpl")
 
   vars = {
     INSTANCE_NAME = "${var.service_name}-${var.short_env}-bastion"
@@ -27,7 +27,7 @@ resource "aws_instance" "bastion" {
   instance_type               = var.instance_type
   monitoring                  = false
   key_name                    = var.common_key
-  subnet_id                   = var.public_sub
+  subnet_id                   = element(var.public_subs, 0)
   vpc_security_group_ids      = [aws_security_group.bastion.id]
   associate_public_ip_address = true
   source_dest_check           = true
@@ -45,14 +45,12 @@ resource "aws_instance" "bastion" {
     Name         = "${var.service_name}-${var.short_env}-bastion"
     Envvironment = var.environment
     Service      = var.service_name
-    Cost         = "Cost:${var.service_name}:${var.environment}:ulr:${var.short_env}"
   }
 
   volume_tags = {
     Name         = "${var.service_name}-${var.short_env}-bastion"
     Envvironment = var.environment
     Service      = var.service_name
-    Cost         = "Cost:${var.service_name}:${var.environment}:ulr:${var.short_env}"
   }
 
   lifecycle {
@@ -94,8 +92,18 @@ resource "aws_security_group_rule" "bastion_rule_tcp22" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = var.local_ips
+  cidr_blocks       = var.developers_site
   security_group_id = aws_security_group.bastion.id
+}
+
+resource "aws_security_group_rule" "bastion_rule_tcp3306" {
+  description              = "MySQL from maintenance vpc"
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  source_security_group_id = var.db_sg
+  security_group_id        = aws_security_group.bastion.id
 }
 
 resource "aws_iam_instance_profile" "bastion" {

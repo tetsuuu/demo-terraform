@@ -2,7 +2,7 @@
 yum update -y
 
 yum -y remove ntp
-yum -y install chrony
+yum -y install chrony mysql-client
 chkconfig chronyd on
 /etc/init.d/chronyd start
 

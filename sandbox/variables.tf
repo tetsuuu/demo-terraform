@@ -3,29 +3,31 @@ variable "environment" {
 }
 
 variable "region" {
-  default = "ap-northeast-1"
+  default = "us-east-1"
 }
 
 variable "service_name" {
-  default = "demo"
+  default = "proxy"
 }
 
 variable "short_env" {
-  default = "snd"
+  default = "sand"
 }
 
-variable "local_ips" {
+variable "developers_site" {
   type = "list"
   default = [ //TODO
-    "192.168.31.1/32",
-    "192.168.31.2/32"
   ]
 }
 
-variable "service_vpc" {
-    default = "vpc-12345678"  //TODO
+variable "cidr_block" {
+  default = "192.168.0.0/16"
 }
 
-variable "public_sub" {
-    default = "subnet-12345678"  //TODO
+variable "availability_zone" {
+  default = {
+    "us-east-1a" = 1
+    "us-east-1b" = 2
+  }
 }
+
