@@ -2,7 +2,6 @@ variable "environment" {}
 variable "service_name" {}
 variable "short_env" {}
 variable "maintenance_cidr_blocks" {}
-variable "identifier" {}
 variable "storage" {}
 variable "max_storage" {}
 variable "engine" {}
@@ -23,6 +22,7 @@ variable "auto_minor_version_upgrade" {}
 variable "apply_immediately" {}
 variable "performance_insights_enabled" {}
 variable "developers_site" {}
+variable "availability_zones" {}
 
 
 

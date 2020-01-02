@@ -7,7 +7,7 @@ variable "region" {
 }
 
 variable "service_name" {
-  default = "proxy"
+  default = ""  //TODO
 }
 
 variable "short_env" {
@@ -16,7 +16,7 @@ variable "short_env" {
 
 variable "developers_site" {
   type = "list"
-  default = [ //TODO
+  default = [  //TODO
   ]
 }
 
@@ -26,8 +26,8 @@ variable "cidr_block" {
 
 variable "availability_zone" {
   default = {
-    "us-east-1a" = 1
-    "us-east-1b" = 2
+    "us-east-1a" = 0
+    "us-east-1b" = 1
   }
 }
 

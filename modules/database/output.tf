@@ -1,6 +1,6 @@
 output "db_endpoint" {
-  value       = aws_db_instance.service_db.endpoint
-  description = "The endpoint of MySQL RDS"
+  value       = aws_rds_cluster.service_db_cluster.endpoint
+  description = "The endpoint of Aurora cluster"
 }
 
 output "db_sg" {
