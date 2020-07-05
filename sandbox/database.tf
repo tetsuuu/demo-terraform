@@ -9,7 +9,7 @@ module "aws_db_instance" {
   storage                      = 20
   max_storage                  = 100
   engine                       = "mysql"
-  engine_version               = "5.7.22"
+  engine_version               = "5.7.28"
   publicly_accessible          = true
   instance_class               = "db.m5.large"
   name                         = "proxy"

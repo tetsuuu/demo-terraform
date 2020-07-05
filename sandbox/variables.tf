@@ -15,8 +15,7 @@ variable "short_env" {
 }
 
 variable "developers_site" {
-  type = "list"
-  default = [ //TODO
+  default = [ // TODO
   ]
 }
 

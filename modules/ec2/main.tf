@@ -55,11 +55,11 @@ resource "aws_instance" "bastion" {
 
   lifecycle {
     ignore_changes = [
-      "user_data",
-      "instance_type",
-      "key_name",
-      "subnet_id",
-      "vpc_security_group_ids",
+      user_data,
+      instance_type,
+      key_name,
+      subnet_id,
+      vpc_security_group_ids,
     ]
   }
 }
